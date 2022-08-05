@@ -15,6 +15,7 @@ app.get('/', (req, ourResponse) => {
       const weatherData = JSON.parse(data);
       const temp = (weatherData.main.temp);
       const description = (weatherData.weather[0].description);
+      ourResponse.write('<h1>The current weather in London</h1>');
       ourResponse.send(`The current weather is ${description} with a temperature of ${temp} degrees C.`);
     });
   });

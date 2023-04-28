@@ -1,3 +1,5 @@
+
+const appID = require('./apiKey');
 const { response } = require('express');
 const express = require('express'); // require Express
 const https = require('https');
@@ -14,13 +16,13 @@ app.get('/', (req, ourResponse) => {
 app.post('/', (req, res) => {
   const city = req.body.cityName;
   const units = req.body.units;
-  const appID = '1a418d7b3e1171b58566cd6a7ec43fe6'
+  // const appID = '1a418d7b3e1171b58566cd6a7ec43fe6'
 
   const unit = units === 'metric' ? 'C'
     : units === 'imperial' ? 'F'
     : '';
 
-  const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appID}&units=${units}`; //sets the openWeatherMap API URL
+  const weatherURL = `http://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${appID}&units=${units}`; //sets the openWeatherMap API URL
   
   https.get(weatherURL, (openWeatherResponse) => {
   // 👆🏼 send request to OpenWeatherMap API

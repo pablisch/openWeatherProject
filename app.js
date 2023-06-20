@@ -9,14 +9,14 @@ const app = express(); // set app to Express function
 
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.get('/', (req, ourResponse) => {
-  ourResponse.sendFile(`${__dirname}/index.html`);
+app.get('/', (req, res) => {
+  res.sendFile(`${__dirname}/index.html`);
+  console.log(appID)
 });
 
-app.post('/', (req, res) => {
+app.post('/weather', (req, res) => {
   const city = req.body.cityName;
   const units = req.body.units;
-  // const appID = '1a418d7b3e1171b58566cd6a7ec43fe6'
 
   const unit = units === 'metric' ? 'C'
     : units === 'imperial' ? 'F'
@@ -40,11 +40,12 @@ app.post('/', (req, res) => {
       res.write(`<p>The current weather is ${description} with a temperature of ${temp} degrees ${unit}.</p>`);
       res.write(`<img src="${iconURL}" alt="weather icon">`);
       res.send();
+      console.log(appID)
     });
   });
 })
 
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
+app.listen(4000, () => {
+  console.log('Server running on port 4000');
 })
 

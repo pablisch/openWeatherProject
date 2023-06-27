@@ -22,7 +22,7 @@ app.post('/weather', (req, res) => {
     : units === 'imperial' ? 'F'
     : '';
 
-  const weatherURL = `http://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${appID}&units=${units}`; //sets the openWeatherMap API URL
+  const weatherURL = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${appID}&units=${units}`; //sets the openWeatherMap API URL
   
   https.get(weatherURL, (openWeatherResponse) => {
   // 👆🏼 send request to OpenWeatherMap API
@@ -33,7 +33,7 @@ app.post('/weather', (req, res) => {
       const temp = (weatherData.main.temp); // extracting target data
       const description = (weatherData.weather[0].description);
       const icon = (weatherData.weather[0].icon);
-      const iconURL = `http://openweathermap.org/img/wn/${icon}@2x.png`
+      const iconURL = `https://openweathermap.org/img/wn/${icon}@2x.png`
       // 👇🏼 res.writes to browser
       res.write('<body style="background-color: #bbccee"</body>');
       res.write(`<h1>The current weather in ${city}</h1>`);
